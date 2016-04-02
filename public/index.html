@@ -1,23 +1,67 @@
 <html>
 <head>
   <title></title>
+  <style type="text/css">
+    span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      text-align: center;
+      margin-top: 45%;
+      opacity: 0.1;
+      font-size: 10em;
+      font-family: monospace;
+    }
+  </style>
   <script src="p5.min.js"></script>
   <script type="text/javascript">
+  var touchStroke = [];
+  
+  function uniqueId () {
+    return Math.random().toString(36).replace("0.", Date.now().toString(36))
+  }
+  
+  function submitStroke (points) {
+    var http = new XMLHttpRequest();
+    var url = "stroke";
+    var params = "id=" + uniqueId() + "&points=" + points.join(",");
+    http.open("POST", url, true);
+
+    //Send the proper header information along with the request
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(params);
+}
+  
   function setup() {
     createCanvas(displayWidth, displayHeight);
     strokeWeight(10)
     stroke(0);
   }
 
-  function touchMoved() {
-    line(touchX, touchY, ptouchX, ptouchY);
+  function touchStarted() {
+    background(255)
+    touchStroke = [];
     return false;
   }
+  
+  function touchEnded() {
+    console.log(uniqueId(), touchStroke);
+    // TODO submit to server, gensym id etc
+    submitStroke(touchStroke);
+    return false;
+  }
+  
+  function touchMoved() {
+    touchStroke.push(2 * (touchX / displayWidth - 0.5));
+    touchStroke.push(2 * (touchY / displayHeight - 0.5));
+    line(touchX, touchY, ptouchX, ptouchY);
 
-
+    return false;
+  }
   </script>
 </head>
 <body>
-  VR VR VR VR sa
+  <span>DRAW</span>
 </body>
 </html>

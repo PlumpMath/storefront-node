@@ -1,26 +1,27 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var redis = require("redis"),
 client = redis.createClient();
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 client.on("error", function (err) {
   console.log("Error " + err);
 });
 
-client.set("string key", "string val", redis.print);
-client.hset("hash key", "hashtest 1", "some value", redis.print);
-client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
+app.post('/stroke', function (req, res) {
+  client.hset("strokes", req.body.id, req.body.points);
+});
 
 app.get('/data', function (req, res) {
-  client.hkeys("hash key", function (err, replies) {
-    console.log(replies.length + " replies:");
-    var r = ""
-    replies.forEach(function (reply, i) {
-      r += (i + ": " + reply + " ");
-    });
-    res.send(r);
+  client.hgetall("strokes", function (err, reply) {
+    var r = "";
+    for(k in reply) {
+      r += k + "," + reply[k] + "\n";
+    }
+    res.send(r)
   });
 });
 
