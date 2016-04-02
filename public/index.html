@@ -49,11 +49,7 @@
     resizeCanvas(windowWidth, windowHeight);
   }
 
-  function touchEnded() {
-    console.log(uniqueId(), touchStroke);
-    // TODO submit to server, gensym id etc
-    submitStroke(touchStroke);
-    
+  function touchStarted() {
     background(128)
     touchStroke = [];
     px = touchX;
@@ -61,10 +57,19 @@
     return false;
   }
   
+  function touchEnded() {
+    console.log(uniqueId(), touchStroke);
+    // TODO submit to server, gensym id etc
+    submitStroke(touchStroke);
+    return false;
+  }
+  
   function touchMoved() {
     touchStroke.push(2 * (touchX / windowWidth - 0.5));
     touchStroke.push(2 * (touchY / windowHeight - 0.5));
     line(touchX, touchY, px, py);
+    px = touchX;
+    py = touchY;
     return false;
   }
   </script>
