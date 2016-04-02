@@ -2,6 +2,10 @@
 <head>
   <title></title>
   <style type="text/css">
+  body {
+    margin: 0;
+  }
+  
   span {
     display: block;
     width: 100%;
@@ -35,6 +39,7 @@
   
   function setup() {
     createCanvas(windowWidth, windowHeight);
+    background(128);
     strokeWeight(10)
     stroke(0);
   }
@@ -44,7 +49,7 @@
   }
 
   function touchStarted() {
-    background(255)
+    background(128)
     touchStroke = [];
     return false;
   }
