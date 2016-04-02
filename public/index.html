@@ -21,6 +21,7 @@
   <script src="p5.min.js"></script>
   <script type="text/javascript">
   var touchStroke = [];
+  var px = 0, py = 0;
   
   function uniqueId () {
     return Math.random().toString(36).replace("0.", Date.now().toString(36))
@@ -51,6 +52,8 @@
   function touchStarted() {
     background(128)
     touchStroke = [];
+    px = touchX;
+    py = touchY;
     return false;
   }
   
@@ -64,8 +67,7 @@
   function touchMoved() {
     touchStroke.push(2 * (touchX / windowWidth - 0.5));
     touchStroke.push(2 * (touchY / windowHeight - 0.5));
-    line(touchX, touchY, ptouchX, ptouchY);
-
+    line(touchX, touchY, px, py);
     return false;
   }
   </script>
