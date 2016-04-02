@@ -21,7 +21,7 @@
   <script src="p5.min.js"></script>
   <script type="text/javascript">
   var touchStroke = [];
-  var px = 0, py = 0;
+  var px = null, py = null;
   
   function uniqueId () {
     console.log("uniqueId");
@@ -74,7 +74,8 @@
     console.log("touchMoved");
     touchStroke.push(2 * (touchX / windowWidth - 0.5));
     touchStroke.push(2 * (touchY / windowHeight - 0.5));
-    line(touchX, touchY, px, py);
+    if(px != null && py != null)
+      line(touchX, touchY, px, py);
     px = touchX;
     py = touchY;
     return false;
