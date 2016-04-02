@@ -49,18 +49,15 @@
     resizeCanvas(windowWidth, windowHeight);
   }
 
-  function touchStarted() {
-    background(128)
-    touchStroke = [];
-    px = touchX;
-    py = touchY;
-    return false;
-  }
-  
   function touchEnded() {
     console.log(uniqueId(), touchStroke);
     // TODO submit to server, gensym id etc
     submitStroke(touchStroke);
+    
+    background(128)
+    touchStroke = [];
+    px = touchX;
+    py = touchY;
     return false;
   }
   
