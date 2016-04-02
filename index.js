@@ -4,6 +4,8 @@ var app = express();
 var redis = require("redis"),
 client = redis.createClient();
 
+app.set('port', (process.env.PORT || 3000));
+
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -25,6 +27,6 @@ app.get('/data', function (req, res) {
   });
 });
 
-app.listen(3000, function () {
+app.listen(app.get('port'), function () {
   console.log('listening on port 3000');
 });
