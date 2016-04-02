@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var redis = require("redis"),
-client = redis.createClient();
+client = redis.createClient(process.env.REDIS_URL);
 
 app.set('port', (process.env.PORT || 3000));
 
