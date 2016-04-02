@@ -54,7 +54,7 @@
   }
 
   function touchStarted() {
-    document.querySelector("span").innerHTML += "touchStarted<br>";
+    // document.querySelector("span").innerHTML += "touchStarted<br>";
     background(255)
     touchStroke = [];
     px = touchX;
@@ -63,13 +63,13 @@
   }
   
   function touchEnded() {
-    document.querySelector("span").innerHTML += "touchEnded<br>";
+    // document.querySelector("span").innerHTML += "touchEnded<br>";
     submitStroke(touchStroke);
     return false;
   }
   
   function touchMoved() {
-    document.querySelector("span").innerHTML += "touchMoved<br>";
+    // document.querySelector("span").innerHTML += "touchMoved<br>";
     touchStroke.push(2 * (touchX / windowWidth - 0.5));
     touchStroke.push(2 * (touchY / windowHeight - 0.5));
     if(px != null && py != null)
@@ -81,6 +81,6 @@
   </script>
 </head>
 <body>
-  <span>DRAW<br></span>
+  <!-- <span>DRAW<br></span> -->
 </body>
 </html>
