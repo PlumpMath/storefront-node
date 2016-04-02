@@ -14,7 +14,7 @@
     text-align: center;
     margin-top: 5%;
     opacity: 0.1;
-    font-size: 2em;
+    font-size: 10em;
     font-family: monospace;
   }
   </style>
@@ -42,7 +42,7 @@
   
   function setup() {
     console.log("setup");
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(displayWidth, displayHeight);
     background(255);
     strokeWeight(10)
     stroke(0);
@@ -50,7 +50,7 @@
   
   function windowResized() {
     console.log("windowResized");
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(displayWidth, displayHeight);
   }
 
   function touchStarted() {
@@ -70,8 +70,8 @@
   
   function touchMoved() {
     // document.querySelector("span").innerHTML += "touchMoved<br>";
-    touchStroke.push(2 * (touchX / windowWidth - 0.5));
-    touchStroke.push(2 * (touchY / windowHeight - 0.5));
+    touchStroke.push(2 * (touchX / displayWidth - 0.5));
+    touchStroke.push(2 * (touchY / displayHeight - 0.5));
     if(px != null && py != null)
       line(touchX, touchY, px, py);
     px = touchX;
@@ -81,6 +81,6 @@
   </script>
 </head>
 <body>
-  <!-- <span>DRAW<br></span> -->
+  <span>DRAW></span>
 </body>
 </html>
