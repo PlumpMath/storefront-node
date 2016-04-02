@@ -12,9 +12,9 @@
     height: 100%;
     position: fixed;
     text-align: center;
-    margin-top: 45%;
+    margin-top: 5%;
     opacity: 0.1;
-    font-size: 10em;
+    font-size: 2em;
     font-family: monospace;
   }
   </style>
@@ -54,7 +54,7 @@
   }
 
   function touchStarted() {
-    console.log("touchStarted");
+    document.querySelector("span").innerHTML += "touchStarted<br>";
     background(255)
     touchStroke = [];
     px = touchX;
@@ -63,15 +63,13 @@
   }
   
   function touchEnded() {
-    console.log("touchEnded");
-    console.log(uniqueId(), touchStroke);
-    // TODO submit to server, gensym id etc
+    document.querySelector("span").innerHTML += "touchEnded<br>";
     submitStroke(touchStroke);
     return false;
   }
   
   function touchMoved() {
-    console.log("touchMoved");
+    document.querySelector("span").innerHTML += "touchMoved<br>";
     touchStroke.push(2 * (touchX / windowWidth - 0.5));
     touchStroke.push(2 * (touchY / windowHeight - 0.5));
     if(px != null && py != null)
@@ -83,6 +81,6 @@
   </script>
 </head>
 <body>
-  <span>DRAW</span>
+  <span>DRAW<br></span>
 </body>
 </html>
